@@ -1,0 +1,73 @@
+image:
+  name: hashicorp/terraform:1.5
+  entrypoint: [""]
+
+stages:
+  - apply
+  - deploy
+  - test
+  - destroy
+
+apply:
+  stage: apply
+  before_script:
+    - cd terraform
+    - terraform init -reconfigure
+  script:
+    - terraform apply -auto-approve
+    - terraform output -raw public_ip > public_ip.txt
+    - terraform output -raw private_key > generated_key.pem
+    - chmod 400 generated_key.pem
+    - ls -la
+  artifacts:
+    paths:
+      - terraform/public_ip.txt
+      - terraform/generated_key.pem
+      - terraform/terraform.tfstate
+      - terraform/terraform.tfstate.backup
+
+deploy_nginx:
+  stage: deploy
+  image: alpine:latest
+  dependencies:
+    - apply
+  before_script:
+    - apk add --no-cache openssh curl
+  script:
+    - |
+      cd terraform
+      ls -l
+      IP=$(cat public_ip.txt)
+      echo "EC2 IP: $IP"
+      echo "Waiting for EC2..."
+      sleep 60
+      ssh -o StrictHostKeyChecking=no -i generated_key.pem ubuntu@$IP "docker run -d -p 80:80 nginx"
+  artifacts:
+    paths:
+      - terraform/public_ip.txt
+      - terraform/generated_key.pem
+
+test_app:
+  stage: test
+  image: alpine:latest
+  dependencies:
+    - deploy_nginx
+  before_script:
+    - apk add --no-cache curl
+  script:
+    - |
+      cd terraform
+      IP=$(cat public_ip.txt)
+      sleep 20
+      curl http://$IP
+
+destroy:
+  stage: destroy
+  before_script:
+    - cd terraform
+    - terraform init
+  script:
+    - terraform destroy -auto-approve
+#  when: manual
+  when: delayed
+  start_in: 15 minutes
