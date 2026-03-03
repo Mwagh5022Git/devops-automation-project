@@ -10,6 +10,19 @@ resource "aws_cloudfront_distribution" "cdn" {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "s3origin"
+    viewer_protocol_policy = "allow-all"
+
+    forwarded_values {
+    query_string = false
+
+    cookies {
+      forward = "none"
+    }
+  }
+}
+    allowed_methods  = ["GET", "HEAD"]
+    cached_methods   = ["GET", "HEAD"]
+    target_origin_id = "s3origin"
 
     viewer_protocol_policy = "allow-all"
   }
