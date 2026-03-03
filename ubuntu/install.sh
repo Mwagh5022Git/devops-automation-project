@@ -22,12 +22,12 @@ sudo apt update
 sudo apt install terraform -y
 terraform -version
 
-echo “=========================================”
+echo “======================================================================================================================”
 echo “ ********  Installed Terraform ********”
 echo “We install Terraform using HashiCorp official APT repository so that future upgrades can be handled using apt upgrade.”
-echo “=========================================”
+echo “=======================================================================================================================”
 echo “==========    Install AWS CLI    ===============”
-echo “=========================================”
+echo “=======================================================================================================================”
 
 #	Install AWS CLI
 #  Remove Old Attempt (if any)
