@@ -10,10 +10,10 @@ aws configure set aws_access_key_id $ACCESS_KEY
 aws configure set aws_secret_access_key $SECRET_KEY
 aws configure set region $REGION
 
-echo "========== Switching to another Bash File  =========="
-chmod +x terra.sh
-./terra.sh
-echo "========== Return to aws_config Bash File =========="
+#echo "========== Switching to another Bash File  =========="
+#chmod +x terra.sh
+#./terra.sh
+#echo "========== Return to aws_config Bash File =========="
 
 
 echo "AWS Configured Successfully"
