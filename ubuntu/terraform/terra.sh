@@ -27,8 +27,6 @@ aws configure set default.region $REGION
 
 echo "AWS Login Successful"
 
-cd terraform
-
 echo "Initializing Terraform..."
 terraform init
 
