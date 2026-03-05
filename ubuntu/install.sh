@@ -42,8 +42,5 @@ aws –version
 
 echo “I install AWS CLI v2 using the official bundled installer provided by AWS instead of using apt, because apt provides outdated v1 versions.”
 echo “=========================================”
-#           Git Clone for Terraform
-#git clone https://github.com/Mwagh5022Git/devops-projects-terraform.git
-#cd devops-projects-terraform
-#touch terra.sh
-#chmod +x terra.sh
+cd terraform
+chmod +x terra.sh && ./terra.sh
