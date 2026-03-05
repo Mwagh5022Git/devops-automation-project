@@ -1,4 +1,4 @@
-resource "aws_cloudfront_distribution" "cdn" {
+resource "default_cache_behavior" "cdn" {
   enabled = true
 
   origin {
@@ -15,11 +15,11 @@ resource "aws_cloudfront_distribution" "cdn" {
     forwarded_values {
     query_string = false
 
-    cookies {
-      forward = "none"
+      cookies {
+        forward = "none"
+      }
     }
-  }
-}
+
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "s3origin"
