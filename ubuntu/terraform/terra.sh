@@ -1,16 +1,16 @@
 #!/bin/bash
 /*
-echo "AWS LOGIN"
-aws configure
+// echo "AWS LOGIN"
+// aws configure
 
-cd terraform || exit
+//cd terraform || exit
 
-terraform init
-terraform plan
-terraform apply -auto-approve
+//terraform init
+//terraform plan
+//terraform apply -auto-approve
 
-echo "======== INFRA CREATED ========"
-terraform output
+//echo "======== INFRA CREATED ========"
+//terraform output
 */
 
 #!/bin/bash
