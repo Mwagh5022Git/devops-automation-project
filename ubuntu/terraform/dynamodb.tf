@@ -8,3 +8,7 @@ resource "aws_dynamodb_table" "lock" {
     type = "S"
   }
 }
+/*
+ # Terraform state import
+terraform import aws_dynamodb_table.lock terraform-lock
+*/
