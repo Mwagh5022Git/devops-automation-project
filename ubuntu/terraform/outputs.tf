@@ -3,7 +3,7 @@ output "vpc_id" {
 }
 
 output "s3_bucket" {
-  value = aws_s3_bucket.bucket.id
+  value = aws_s3_bucket.site.id
 }
 
 output "alb_dns" {
