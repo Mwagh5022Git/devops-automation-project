@@ -21,3 +21,11 @@ AMI
 CloudFront
    ↓
 Output Summary
+
+
+Terraform Commands
+
+      terraform init
+      terraform validate
+      terraform plan
+      terraform apply
