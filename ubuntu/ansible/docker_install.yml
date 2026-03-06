@@ -1,0 +1,13 @@
+- name: run container
+
+  docker_container:
+
+    name: devops-container
+
+    image: devops-app
+
+    state: started
+
+    ports:
+
+      - "80:80"
